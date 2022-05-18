@@ -1,0 +1,41 @@
+---
+title: "UPPS-P"
+output: html_document
+date: '2022-05-15'
+---
+## Background
+Scoring of the UPPS-P Scale
+The UPPS-P Scale (Urgency, Premeditation (lack of), Perseverance (lack of), Sensation Seeking, Positive Urgency, Impulsive Behavior Scale) was originally developed by Whiteside and Lynam (2001). The full version of the scale has 59 items with 10 - 14 items per subgroup. The 5 subgroups are as follows: Negative Urgency, (lack of) Premeditation, (lack of) Perseverance, Sensation Seeking, Positive Urgency. Items are rated on a 4-point Likert type scale from 1 ("Agree Strongly") to 5 ("Disagree Strongly"). The UPPS-P was used in multiple research studies [(Magid et al. 2007), (Whiteside, et al. 2003)]. 
+
+[Magid, Viktoriya, and Craig R. Colder (2007). “The UPPS Impulsive Behavior Scale: Factor Structure and Associations with College Drinking.” Personality and Individual Differences, Pergamon.]
+
+[Whiteside, S. P., & Lynam, D. R. (2003). Understanding the role of impulsivity and externalizing psychopathology in alcohol abuse: Application of the UPPS Impulsive Behavior Scale. Experimental and Clinical Psychopharmacology, 11(3), 210–217.] https://doi.org/10.1037/1064-1297.11.3.210
+
+## Scoresheet
+To clean the data, the scoresheet:
+
+(1) selects only variables that are relevant for the current measure
+
+(2) recoded all necessary variables (e.g. 'agree strongly = 1' to 'agree strongly = 0')
+
+(3) Creates a symptom aaverage score, which gives an average count of the number of symptoms (0-3) that are present for each individual
+
+## Key Variables
+'upps_average' (defines average score of symptoms)
+
+```{r}
+library(haven)
+library(cgwtools)
+library(scorekeeper)
+library(readxl)
+load("MAXED_RA_raw.Rdata")
+```
+
+```{r}
+setwd("~/Desktop/scoresheets")
+#The code below loads the raw data and the score sheet and cleans the data
+MAXED_RA_raw <- load("MAXED_RA_raw.csv")
+UPPS-P_scoresheet <- read.csv("UPPS-P_scoresheet.csv")
+cleaned_data <- scorekeep(MAXED_RA_raw, IUS_scoresheet)
+```
+

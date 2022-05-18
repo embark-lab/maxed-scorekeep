@@ -1,0 +1,51 @@
+---
+title: "Compulsive Exercise Test R Markdown"
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
+date: '2022-05-01'
+---
+## Background
+
+Scoring of the Compulsive Exercise Test
+This scale was developed by researchers at Loughborough University to assess the primary factors operating in the maintenance of excessive exercise (Taranis L. et al. 2011). A recent review reported that up to 85% of eating disordered patients engage in compulsive exercise (Meyer, C. et al. 2016). Items are rated on a 6-point Likert type scale from 0 ("never true") to 5 ("always true") and generates five subscales: Avoidance and rule-driven behavior, Weight control exercise, Mood improvement, Lack of exercise enjoyment, and Exercise rigidity. Higher scores on the CET is indicative of greater pathology.
+
+The Compulsive Exercise Test has previously been scored and examined in several papers:
+
+[The Compulsive Exercise Test: confirmatory factor analysis and links with eating psychopathology among women with clinical eating disorders by Meyer, C., et al.](https://doi.org/10.1186/s40337-016-0113-3)
+
+[Disordered eating and exercise: Development and preliminary validation of the compulsive exercise test (CET) by Taranis, L., et al.](https://doi.org/10.1002/erv.1108) 
+
+## Scoresheet
+To clean the data, the scoresheet:
+
+(1) selects only variables that are relevant for the current measure
+
+(2) recoded all variables (e.g. changing "never true = 1" to "never true = 0"), renamed necessary variables (e.g. cet_week_repeat to cet_week)
+
+(3) Creates a symptom sum score, which gives a count of the number of compulsive exercise symptoms (0-5) that are present for each individual
+
+## Key Variables
+
+'cet_sum'(defines the severity of compulsive exercise based on number of symptoms)
+
+
+```{r}
+library(haven)
+library(cgwtools)
+library(scorekeeper)
+library(readxl)
+load("MAXED_RA_raw.Rdata")
+
+
+```
+
+```{r}
+setwd("~/Desktop/scoresheets")
+#The code below loads the raw data and the score sheet and cleans the data
+MAXED_RA_raw <- load("MAXED_RA_raw.csv")
+CET_scoresheet <- read_excel("CET_scoresheet 2.xlsx")
+cleaned_data <- scorekeep(MAXED_RA_raw, CET_scoresheet)
+```
+

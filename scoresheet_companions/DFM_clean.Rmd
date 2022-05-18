@@ -1,0 +1,46 @@
+---
+title: "Drive for Muscularity"
+output: html_document
+date: '2022-05-15'
+---
+## Background
+
+Scoring of the Drive for Muscularity
+This scale was developed to assess an individual’s perception that he or she is not muscular enough and that bulk should be added to his or her body frame, in the form of muscle mass. The survey asks to indicate the extent to which a series of attitudes and behaviors are descriptive of themselves (i.e. “I wish that I were more muscular”) (McCreary, D.R., et al., 2004). The survey is more commonly used by men, but there is reliability, but somewhat low validity in using the scale to survey females, particularly with an eating disorder diagnosis (Carvalho, P., et al., 2019). The Drive for Mascularity (DMS) is a 15 item survey with two lower-order factors: masculinity related attitudes and muscle enhancing behaviors.
+
+The Drive for Muscularity has previously been scored and examined in several papers:
+
+[Carvalho, Pedro Henrique Berbert de, et al. (2019). “Is the Drive for Muscularity Scale a Valid and Reliable Instrument for Young Adult Women?” Body Image, Elsevier.] https://www.sciencedirect.com/science/article/abs/pii/S1740144518301931  
+
+[McCreary, D. R., Sasse, D. K., Saucier, D. M., & Dorsch, K. D. (2004). Measuring the Drive for Muscularity: Factorial Validity of the Drive for Muscularity Scale in Men and Women. Psychology of Men & Masculinity, 5(1), 49–58.] https://doi.org/10.1037/1524-9220.5.1.49  
+
+## Scoresheet
+To clean the data, the scoresheet:
+
+(1) selects only variables that are relevant for the current measure
+
+(2) recoded all necessary variables (e.g. changing "always = 1" to "always = 0")
+
+(3) Creates a symptom aaverage score, which gives an average count of the number of symptoms (0-5) that are present for each individual
+
+## Key Variables
+'iuss_sum' (defines sum score of symptoms)
+
+```{r}
+library(haven)
+library(cgwtools)
+library(scorekeeper)
+library(readxl)
+load("MAXED_RA_raw.csv")
+```
+
+```{r}
+setwd("~/Desktop/scoresheets")
+#The code below loads the raw data and the score sheet and cleans the data
+MAXED_RA_raw <- load("MAXED_RA_raw.csv")
+IUS_scoresheet <- read.csv("IUS_scoresheet.csv")
+cleaned_data <- scorekeep(MAXED_RA_raw, IUS_scoresheet)
+```
+
+
+
